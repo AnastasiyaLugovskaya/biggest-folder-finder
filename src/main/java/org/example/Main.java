@@ -9,19 +9,20 @@ import static org.example.SizeCalculator.*;
 public class Main {
 
     public static void main(String[] args) {
+//        String [] argums = {"-d", "C:\\Users\\nasta\\Desktop\\", "-l",  "50Kb"};
+        ParametersBag bag = new ParametersBag(args);
 
 
-        String folderPath = "C:\\Users\\nasta\\Desktop\\Coding";
+        String folderPath = bag.getPath();
         File file = new File(folderPath);
-        Node root = new Node(file, 50*1024);
+        Node root = new Node(file, bag.getLimit());
         long start = System.currentTimeMillis();
         FolderSizeCalculator calculator = new FolderSizeCalculator(root);
         ForkJoinPool pool = new ForkJoinPool();
         pool.invoke(calculator);
         System.out.println(root);
         long duration = (System.currentTimeMillis() - start);
-        System.out.println(duration + " ms");
-        System.out.println("MachineSize = " + getSizeFromHumanReadable(humanReadableSize(root.getSize())));
+
     }
 
 

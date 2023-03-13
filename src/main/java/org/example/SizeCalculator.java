@@ -24,11 +24,13 @@ public class SizeCalculator {
         return humanSize;
     }
     public static long getSizeFromHumanReadable(String size){
+        System.out.println(size);
+//        System.exit(0);
         long machineSize = 0;
-        String regexB = "\\d+.\\d{1}B";
-        String regexKb = "\\d+.\\d{1}Kb";
-        String regexMb = "\\d+.\\d{1}Mb";
-        String regexGb = "\\d+.\\d{1}Gb";
+        String regexB = "\\d+B";
+        String regexKb = "\\d+Kb";
+        String regexMb = "\\d+Mb";
+        String regexGb = "\\d+Gb";
         if (size.matches(regexB)){
             machineSize = Long.parseLong(size.replaceAll("[^0-9]+", ""));
         } else if (size.matches(regexKb)) {
